@@ -2,6 +2,7 @@ window.addEventListener("DOMContentLoaded", () => {
   if (typeof window !== "undefined" && window.Vue) {
     window.Vue.directive("data", {});
     window.Vue.directive("data-child", {});
+    window.Vue.directive("props", {});
 
     document.querySelectorAll("[v-data-child]").forEach((element, key) => {
       var dataAttr = element.getAttribute("v-data-child");
