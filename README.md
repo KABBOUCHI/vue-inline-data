@@ -1,4 +1,4 @@
-# vue-inline-data
+# vue-inline-data - experimental
 
 ## Install
 
