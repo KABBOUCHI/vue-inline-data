@@ -27,6 +27,15 @@
 <div v-data="{}">
   <div v-data-child="{ message : 'my-message'}">{{ message }}</div>
   <div v-data-child="{ count : 10}">{{ count }}</div>
-  <div v-data-child="{ count : 100}">{{ count }}</div>
+</div>
+```
+
+#### Props
+
+```html
+<div v-data="{ count : 10}">
+  <div v-data-child v-props="['value']" :value="count">
+    {{ value }}
+  </div>
 </div>
 ```

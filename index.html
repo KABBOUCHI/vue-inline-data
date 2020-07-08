@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Data - Demo</title>
+
+    <link
+      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+
+    <script src="https://unpkg.com/vue@2.6" defer></script>
+    <script src="./dist/vue-inline-data.js" defer></script>
+  </head>
+  <body class="max-w-lg mx-auto py-10">
+    <div
+      v-data="{ value : 0 , title : 'My title'}"
+      class="border-2 border-red-500 p-4"
+    >
+      <div class="flex justify-between">
+        <input
+          type="number"
+          v-model.number="value"
+          class="px-5 py-2 bg-gray-100 rounded mr-4 border border-gray-200 flex-1"
+        />
+        <button
+          @click="value ++"
+          class="py-2 px-4 bg-gray-800 text-white text-sm rounded shadow"
+        >
+          Increment
+        </button>
+      </div>
+
+      <input
+        type="text"
+        v-model="title"
+        class="px-5 py-2 bg-gray-100 rounded mt-4 border border-gray-200 flex-1"
+      />
+
+      <div
+        v-data-child
+        v-props="['title']"
+        :title="title"
+        class="border-2 border-red-500 mt-4 p-4"
+      >
+        {{ title }}
+      </div>
+    </div>
+  </body>
+</html>
