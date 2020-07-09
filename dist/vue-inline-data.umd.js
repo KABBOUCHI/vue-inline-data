@@ -1,2 +1,46 @@
-!function(e){"function"==typeof define&&define.amd?define(e):e()}(function(){window.addEventListener("DOMContentLoaded",function(){"undefined"!=typeof window&&window.Vue&&(window.Vue.directive("data",{}),window.Vue.directive("data-child",{}),window.Vue.directive("props",{}),document.querySelectorAll("[v-data-child]").forEach(function(element,key){var dataAttr=element.getAttribute("v-data-child"),dataExpression=""===dataAttr?"{}":dataAttr,propsAttr=element.getAttribute("v-props"),propsExpression=""===propsAttr?"{}":propsAttr;window.Vue.component("data-child-"+key,{template:element.outerHTML,props:eval("("+propsExpression+")"),data:function data(){return eval("("+dataExpression+")")}});for(var newElement=document.createElement("data-child-"+key),i=0;i<element.attributes.length;i++){var attr=element.attributes.item(i);newElement.setAttribute(attr.nodeName,attr.nodeValue)}element.outerHTML=newElement.outerHTML}),document.querySelectorAll("[v-data]").forEach(function(element){var dataAttr=element.getAttribute("v-data"),dataExpression=""===dataAttr?"{}":dataAttr;new window.Vue({el:element,data:function data(){return eval("("+dataExpression+")")}})}))})});
-//# sourceMappingURL=vue-inline-data.umd.js.map
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(require('vue')) :
+  typeof define === 'function' && define.amd ? define(['vue'], factory) :
+  (global = global || self, factory(global.Vue));
+}(this, (function (Vue) { 'use strict';
+
+  Vue = Vue && Object.prototype.hasOwnProperty.call(Vue, 'default') ? Vue['default'] : Vue;
+
+  window.addEventListener("DOMContentLoaded", function () {
+    Vue.directive("data", {});
+    Vue.directive("data-child", {});
+    Vue.directive("props", {});
+    document.querySelectorAll("[v-data-child]").forEach(function (element, key) {
+      var dataAttr = element.getAttribute("v-data-child");
+      var dataExpression = dataAttr === "" ? "{}" : dataAttr;
+      var propsAttr = element.getAttribute("v-props");
+      var propsExpression = propsAttr === "" ? "{}" : propsAttr;
+      Vue.component("data-child-" + key, {
+        template: element.outerHTML,
+        props: eval("(".concat(propsExpression, ")")),
+        data: function data() {
+          return eval("(".concat(dataExpression, ")"));
+        }
+      });
+      var newElement = document.createElement("data-child-".concat(key));
+
+      for (var i = 0; i < element.attributes.length; i++) {
+        var attr = element.attributes.item(i);
+        newElement.setAttribute(attr.nodeName, attr.nodeValue);
+      }
+
+      element.outerHTML = newElement.outerHTML;
+    });
+    document.querySelectorAll("[v-data]").forEach(function (element) {
+      var dataAttr = element.getAttribute("v-data");
+      var dataExpression = dataAttr === "" ? "{}" : dataAttr;
+      new Vue({
+        el: element,
+        data: function data() {
+          return eval("(".concat(dataExpression, ")"));
+        }
+      });
+    });
+  });
+
+})));
