@@ -25,21 +25,21 @@
 </div>
 ```
 
-#### Nested
+#### Nested - Components
 
 ```html
 <div v-data="{}">
   <div v-component="{ message : 'my-message'}">{{ message }}</div>
-  <div v-data-child="{ message : 'my-message'}">{{ message }}</div>
+  <div v-component-data="{ message : 'my-message'}">{{ message }}</div>
   <div v-data-child="{ count : 10}">{{ count }}</div>
 </div>
 ```
 
-#### Props
+#### Component Props
 
 ```html
 <div v-data="{ count : 10}">
-  <div v-data-child v-props="['value']" :value="count">
+  <div v-component v-props="['value']" :value="count">
     {{ value }}
   </div>
 </div>
