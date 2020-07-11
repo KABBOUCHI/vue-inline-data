@@ -13,10 +13,17 @@
     <script src="https://unpkg.com/vue@2.6" defer></script>
     <script src="./dist/vue-inline-data.umd.js" defer></script>
   </head>
-  <body class="max-w-lg mx-auto py-10">
+  <body class="max-w-lg mx-auto py-10 px-2">
+    <div class="mb-12">
+      <div class="mb-2"><span class="border-4 border-red-500 w-10 inline-block"></span> Vue Instance</div>
+      <div> <span class="border-4 border-orange-500 w-10  inline-block"></span> Vue Compoment with props (Child)</div>
+    </div>
+     
+    </div>
+
     <div
       v-data="{ value : 0 , title : document.title, }"
-      class="border-2 border-red-500 p-4"
+      class="border-4 border-red-500 p-4"
     >
       <div class="flex justify-between">
         <input
@@ -42,9 +49,41 @@
         v-data-child
         v-props="['title']"
         :title="title"
-        class="border-2 border-red-500 mt-4 p-4"
+        class="border-4 border-orange-500 mt-4 p-4"
       >
         {{ title }}
+      </div>
+    </div>
+
+    <script>
+      // for testing
+      localStorage.removeItem("hide-cookie-banner");
+    </script>
+    <div
+      class="container mx-auto fixed inset-x-0 bottom-0 mb-8 border-4 border-red-500 rounded-lg overflow-hidden"
+      v-data="{ show : !localStorage.getItem('hide-cookie-banner'), confirm : () => { localStorage.setItem('hide-cookie-banner',true); this.show = false;}}"
+      v-show="show"
+    >
+      <div
+        class="py-3 pl-6 pr-3  bg-gray-900 shadow-lg w-full flex items-center justify-between"
+      >
+        <span class="text-gray-200 truncated font-medium">
+          This site uses cookies.
+          <span class="hidden md:inline-block font-normal"
+            >By continuing to use this website, you agree to their use.</span
+          >
+
+          <span class="text-red-500">(Demo - Vue Inline Instance)</span>
+        </span>
+
+        <div class="rounded-md shadow-sm">
+          <a
+            @click="confirm"
+            class="cursor-pointer flex items-center justify-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded text-gray-900 bg-white hover:text-gray-600 focus:outline-none focus:shadow-outline transition ease-in-out duration-150"
+          >
+            I Understand
+          </a>
+        </div>
       </div>
     </div>
   </body>
