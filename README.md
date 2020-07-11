@@ -1,5 +1,7 @@
 # vue-inline-data - experimental
 
+#### Demo: https://kabbouchi.github.io/vue-inline-data/
+
 ![Screenshopt](https://kabbouchi.github.io/vue-inline-data/screenshot.png)
 
 ## Install
