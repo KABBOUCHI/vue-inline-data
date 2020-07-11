@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vue Data - Demo</title>
+    <title>Vue Inline Data - Demo</title>
 
     <link
       href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
@@ -11,11 +11,11 @@
     />
 
     <script src="https://unpkg.com/vue@2.6" defer></script>
-    <script src="./dist/vue-inline-data.min.js" defer></script>
+    <script src="./dist/vue-inline-data.umd.js" defer></script>
   </head>
   <body class="max-w-lg mx-auto py-10">
     <div
-      v-data="{ value : 0 , title : 'My title'}"
+      v-data="{ value : 0 , title : document.title, }"
       class="border-2 border-red-500 p-4"
     >
       <div class="flex justify-between">

@@ -24,10 +24,13 @@ window.addEventListener("DOMContentLoaded", function () {
     }
 
     element.outerHTML = newElement.outerHTML;
+    element.removeAttribute("v-data-child");
+    element.removeAttribute("v-props");
   });
   document.querySelectorAll("[v-data]").forEach(function (element) {
     var dataAttr = element.getAttribute("v-data");
     var dataExpression = dataAttr === "" ? "{}" : dataAttr;
+    element.removeAttribute("v-data");
     new Vue({
       el: element,
       data: function data() {

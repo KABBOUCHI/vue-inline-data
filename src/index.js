@@ -27,11 +27,16 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
     element.outerHTML = newElement.outerHTML;
+
+    element.removeAttribute("v-data-child");
+    element.removeAttribute("v-props");
   });
 
   document.querySelectorAll("[v-data]").forEach((element) => {
     var dataAttr = element.getAttribute("v-data");
     const dataExpression = dataAttr === "" ? "{}" : dataAttr;
+    element.removeAttribute("v-data");
+
     new Vue({
       el: element,
       data() {
