@@ -6,11 +6,11 @@
 
   Vue = Vue && Object.prototype.hasOwnProperty.call(Vue, 'default') ? Vue['default'] : Vue;
 
+  Vue.directive("data", {});
+  Vue.directive("component", {});
+  Vue.directive("data-child", {});
+  Vue.directive("props", {});
   window.addEventListener("DOMContentLoaded", function () {
-    Vue.directive("data", {});
-    Vue.directive("component", {});
-    Vue.directive("data-child", {});
-    Vue.directive("props", {});
     ["data-child", "component", "component-data"].forEach(function (tag) {
       document.querySelectorAll("[v-".concat(tag, "]")).forEach(function (element, key) {
         var dataAttr = element.getAttribute("v-".concat(tag));

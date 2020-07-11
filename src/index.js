@@ -1,11 +1,11 @@
 import Vue from "vue";
 
-window.addEventListener("DOMContentLoaded", () => {
-  Vue.directive("data", {});
-  Vue.directive("component", {});
-  Vue.directive("data-child", {});
-  Vue.directive("props", {});
+Vue.directive("data", {});
+Vue.directive("component", {});
+Vue.directive("data-child", {});
+Vue.directive("props", {});
 
+window.addEventListener("DOMContentLoaded", () => {
   ["data-child", "component", "component-data"].forEach((tag) => {
     document.querySelectorAll(`[v-${tag}]`).forEach((element, key) => {
       var dataAttr = element.getAttribute(`v-${tag}`);
