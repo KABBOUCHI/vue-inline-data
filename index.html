@@ -11,7 +11,7 @@
     />
 
     <script src="https://unpkg.com/vue@2.6" defer></script>
-    <script src="./dist/vue-inline-data.umd.js" defer></script>
+    <script src="./dist/vue-inline-data.min.js" defer></script>
   </head>
   <body class="max-w-lg mx-auto py-10 px-2">
     <div class="mb-12">
@@ -46,7 +46,7 @@
       />
 
       <div
-        v-data-child
+        v-component
         v-props="['title']"
         :title="title"
         class="border-4 border-orange-500 mt-4 p-4"

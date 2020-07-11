@@ -27,6 +27,7 @@
 
 ```html
 <div v-data="{}">
+  <div v-component="{ message : 'my-message'}">{{ message }}</div>
   <div v-data-child="{ message : 'my-message'}">{{ message }}</div>
   <div v-data-child="{ count : 10}">{{ count }}</div>
 </div>
