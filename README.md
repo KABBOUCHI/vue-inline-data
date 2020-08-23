@@ -11,6 +11,12 @@
 <script src="https://unpkg.com/vue-inline-data" defer></script>
 ```
 
+## Attributes
+
+- `vi-name`: Component name (optional)
+- `vi-data`: The data object that the Vue instance is observing.
+- `vi-props`: An object representing the current props a component has received. (optional)
+
 ## Usage
 
 #### Simple
