@@ -22,7 +22,7 @@
     </div>
 
     <div
-      v-data="{ value : 0 , title : document.title, }"
+      vi-data="{ value : 0 , title : document.title, }"
       class="border-4 border-red-500 p-4"
     >
       <div class="flex justify-between">
@@ -46,8 +46,9 @@
       />
 
       <div
-        v-component
-        v-props="['title']"
+        vi-data
+        vi-name="Test"
+        vi-props="['title']"
         :title="title"
         class="border-4 border-orange-500 mt-4 p-4"
       >
@@ -61,7 +62,7 @@
     </script>
     <div
       class="container mx-auto fixed inset-x-0 bottom-0 mb-8 border-4 border-red-500 rounded-lg overflow-hidden"
-      v-data="{ show : !localStorage.getItem('hide-cookie-banner'), confirm : () => { localStorage.setItem('hide-cookie-banner',true); this.show = false;}}"
+      vi-data="{ show : !localStorage.getItem('hide-cookie-banner'), confirm : () => { localStorage.setItem('hide-cookie-banner',true); this.show = false;}}"
       v-show="show"
     >
       <div

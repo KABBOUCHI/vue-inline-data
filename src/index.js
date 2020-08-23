@@ -1,44 +1,59 @@
 import Vue from "vue";
-
-Vue.directive("data", {});
-Vue.directive("component", {});
-Vue.directive("data-child", {});
-Vue.directive("props", {});
+import { v4 as uuidv4 } from "uuid";
 
 window.addEventListener("DOMContentLoaded", () => {
-  ["data-child", "component", "component-data"].forEach((tag) => {
-    document.querySelectorAll(`[v-${tag}]`).forEach((element, key) => {
-      var dataAttr = element.getAttribute(`v-${tag}`);
-      const dataExpression = dataAttr === "" ? "{}" : dataAttr;
+  loadComponents();
+  loadRootVueInstances();
+});
 
-      var propsAttr = element.getAttribute("v-props");
-      const propsExpression = propsAttr === "" ? "{}" : propsAttr;
+function loadComponents() {
+  document.querySelectorAll("[vi-data]").forEach((element, key) => {
+    let parentVueNode = element.parentNode.closest("[vi-data]");
+    if (parentVueNode == null) {
+      return;
+    }
 
-      Vue.component(`${tag}-${key}`, {
-        template: element.outerHTML,
-        props: eval(`(${propsExpression})`),
-        data() {
-          return eval(`(${dataExpression})`);
-        },
-      });
-
-      var newElement = document.createElement(`${tag}-${key}`);
-      for (var i = 0; i < element.attributes.length; i++) {
-        var attr = element.attributes.item(i);
-        newElement.setAttribute(attr.nodeName, attr.nodeValue);
-      }
-
-      element.outerHTML = newElement.outerHTML;
-
-      element.removeAttribute(`v-${tag}`);
-      element.removeAttribute("v-props");
-    });
-  });
-
-  document.querySelectorAll("[v-data]").forEach((element) => {
-    var dataAttr = element.getAttribute("v-data");
+    const dataAttr = element.getAttribute("vi-data");
     const dataExpression = dataAttr === "" ? "{}" : dataAttr;
-    element.removeAttribute("v-data");
+    element.removeAttribute("vi-data");
+
+    const propsAttr = element.getAttribute("vi-props");
+    const propsExpression = propsAttr === "" ? "{}" : propsAttr;
+
+    const name = element.getAttribute("vi-name");
+
+    const tag = `vi-data-${uuidv4()}`;
+
+    Vue.component(tag, {
+      name: name || tag,
+      template: element.outerHTML,
+      props: eval(`(${propsExpression})`),
+      data() {
+        return eval(`(${dataExpression})`);
+      },
+    });
+
+    var newElement = document.createElement(tag);
+    for (var i = 0; i < element.attributes.length; i++) {
+      var attr = element.attributes.item(i);
+      newElement.setAttribute(attr.nodeName, attr.nodeValue);
+    }
+
+    element.outerHTML = newElement.outerHTML;
+    element.removeAttribute("vi-props");
+  });
+}
+
+function loadRootVueInstances() {
+  document.querySelectorAll("[vi-data]").forEach((element, key) => {
+    let parentVueNode = element.parentNode.closest("[vi-data]");
+    if (parentVueNode != null) {
+      return;
+    }
+
+    const dataAttr = element.getAttribute("vi-data");
+    const dataExpression = dataAttr === "" ? "{}" : dataAttr;
+    element.removeAttribute("vi-data");
 
     new Vue({
       el: element,
@@ -47,4 +62,4 @@ window.addEventListener("DOMContentLoaded", () => {
       },
     });
   });
-});
+}

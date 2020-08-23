@@ -16,7 +16,7 @@
 #### Simple
 
 ```html
-<div v-data="{ open: false }">
+<div vi-data="{ open: false }">
   <button @click="open = true">Open Dropdown</button>
 
   <ul v-show="open" @click="open = false">
@@ -28,18 +28,17 @@
 #### Nested - Components
 
 ```html
-<div v-data="{}">
-  <div v-component="{ message : 'my-message'}">{{ message }}</div>
-  <div v-component-data="{ message : 'my-message'}">{{ message }}</div>
-  <div v-data-child="{ count : 10}">{{ count }}</div>
+<div vi-data>
+  <div vi-data="{ message : 'my-message'}">{{ message }}</div>
+  <div vi-data="{ count : 10}" vi-name="ComponentNameCounter">{{ count }}</div>
 </div>
 ```
 
 #### Component Props
 
 ```html
-<div v-data="{ count : 10}">
-  <div v-component v-props="['value']" :value="count">
+<div vi-data="{ count : 10}">
+  <div vi-data vi-props="['value']" :value="count">
     {{ value }}
   </div>
 </div>
