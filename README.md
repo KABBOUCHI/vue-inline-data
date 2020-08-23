@@ -2,7 +2,7 @@
 
 #### Demo: https://kabbouchi.github.io/vue-inline-data/
 
-![Screenshopt](https://kabbouchi.github.io/vue-inline-data/screenshot.png)
+![Screenshopt](https://raw.githubusercontent.com/KABBOUCHI/vue-inline-data/master/screenshot.png)
 
 ## Install
 
